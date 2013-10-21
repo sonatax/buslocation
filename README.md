@@ -18,4 +18,5 @@ public/ 以下にディレクトリを作成
 busPosition, busStop の数字が同じファイルを1つの経路として呼び出す。
 
 起動コマンドは"node app.js"
+
 http://localhost:3000/ にアクセスすると動作が見れます
