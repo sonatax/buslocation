@@ -1,0 +1,30 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#menu {
+    width: 263px;
+    padding: 15px;
+    color: #FFF;
+    background-color: #000;
+    opacity: 0.7;
+    position: absolute;
+    top: 30px;
+    right: 2px;
+}
+
+#wrapper {
+    width: 1110px;
+    margin: 0 auto;
+}
+
+.logo {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}

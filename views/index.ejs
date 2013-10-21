@@ -1,0 +1,46 @@
+<div id="map"></div>
+<a href="http://loco.yahoo.co.jp/" alt="Yahoo!ロコ"><img src="/images/loco.png" class="logo"></a>
+<div id="menu">
+<form name="routeid">
+<table border=1>
+<tr><th>on/off</th><th>バスの経路名</th></tr>
+<td><input type="checkbox" onClick="setRouteId(0)" /></td><td>渋谷駅前 - 新橋駅前</td></tr>
+<td><input type="checkbox" onClick="setRouteId(1)" /></td><td>東京駅丸の内南口 - 等々力操車所前</td></tr>
+<td><input type="checkbox" onClick="setRouteId(2)" /></td><td>門前仲町 - 東京テレポート</td></tr>
+<td><input type="checkbox" onClick="setRouteId(3)" /></td><td>渋谷駅前 - 田町駅前</td></tr>
+<td><input type="checkbox" onClick="setRouteId(4)" /></td><td>渋谷駅 - 成城学園前</td></tr>
+<td><input type="checkbox" onClick="setRouteId(5)" /></td><td>大森操車所 - 新代田駅前</td></tr>
+</table>
+</form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/javascripts/map.js"></script>
+<script type="text/javascript" src="/javascripts/xmlhttp.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=CNiTqOexg66kTRhmq18lBEyV6pB2wtQXAqtd9.V3oPuO8q57WlzISkwOK8P7QCy6D3oE2M6vIDNmqg--"></script>
+<script type="text/javascript"><!--
+function setRouteId(id)
+{
+    if(document.routeid.elements[id].checked) {
+        socket.emit('startBus', id);
+    } else {
+        // disableBus(id);
+        disableBusStop(id);
+    }
+}
+
+var socket = io.connect('http://localhost');
+socket.on('postBusStop', function(busstop) {
+    //console.log(busstop);
+    id = busstop.id;
+    setBusStop(busstop, id);
+});
+
+socket.on('postLatLon', function(pos) {
+    if(document.routeid.elements[pos.id].checked) {
+        setPosition(pos.pos, pos.id, pos.num, pos.last);
+        //console.log(pos.id);
+    }
+});
+
+// --></script>
